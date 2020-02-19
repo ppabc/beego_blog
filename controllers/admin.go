@@ -65,9 +65,10 @@ func (c *AdminController) Login() {
 		if _, err := c.o.Update(&user); err != nil {
 			c.History("登录异常", "")
 		} else {
+			c.SetSession("user", user)
 			c.History("登录成功", "/admin/main.html")
 		}
-		c.SetSession("user", user)
+		
 	}
 	c.TplName = c.controllerName+"/login.html"
 }
